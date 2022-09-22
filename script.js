@@ -15,29 +15,45 @@ function getBookInfo() {
     newBook.indexNumber = myLibrary.length;
     myLibrary.push(newBook);
     document.querySelector('#myForm').style.display= 'none';
-    container.textContent = '';
-    for(let book of myLibrary) {
-        let card = document.createElement('div');
-        card.classList.add('card');
-        container.appendChild(card);
-        card.textContent = `Title: ${book.title} \r\nAuthor: ${book.author} \r\nPages: ${book.pages} \r\n${book.read}`;
-        let btnRow = document.createElement('div');
-        card.appendChild(btnRow);
-        let dltBtn = document.createElement('button');
-        dltBtn.setAttribute('id','dltBtn');
-        dltBtn.setAttribute('data-index-number',book.indexNumber);
-        dltBtn.textContent = 'Delete';
-        btnRow.appendChild(dltBtn);
-        //addition
-        // dltBtn.addEventListener('click', () => {
-        //     myLibrary.splice(dltBtn.dataset.indexNumber,1);
-        // });
-        let readBtn = document.createElement('button');
-        readBtn.setAttribute('id','readBtn');
-        readBtn.setAttribute('data-index-number',book.indexNumber);
-        readBtn.textContent = 'Read?';
-        btnRow.appendChild(readBtn);
-    }  
+
+    function displayBooks() {
+        container.textContent = '';
+        for(let book of myLibrary) {
+            book.indexNumber = myLibrary.indexOf(book);
+            let card = document.createElement('div');
+            card.classList.add('card');
+            container.appendChild(card);
+            card.textContent = `Title: ${book.title} \r\nAuthor: ${book.author} \r\nPages: ${book.pages} \r\n${book.read}`;
+            let btnRow = document.createElement('div');
+            card.appendChild(btnRow);
+            let dltBtn = document.createElement('button');
+            dltBtn.classList.add('dltBtn');
+            dltBtn.setAttribute('data-index-number',book.indexNumber);
+            dltBtn.textContent = 'Delete';
+            btnRow.appendChild(dltBtn);
+
+            dltBtn.addEventListener('click', () => {
+                myLibrary.splice(+dltBtn.dataset.indexNumber,1);
+                displayBooks();
+            });
+
+            let readBtn = document.createElement('button');
+            readBtn.classList.add('readBtn');
+            readBtn.setAttribute('data-index-number',book.indexNumber);
+            readBtn.textContent = 'Read?';
+            btnRow.appendChild(readBtn);
+
+            readBtn.addEventListener('click', () => {
+                if(book.read === 'Read')
+                    book.read = 'Not read yet';
+                else
+                    book.read = 'Read';
+                displayBooks();
+            });
+        }
+    }
+
+    displayBooks();
 }
 
 submitButton.addEventListener('click',getBookInfo);
@@ -56,7 +72,6 @@ function Book(title,author,pages,read) {
         return `${this.title} by ${this.author}, ${this.pages} pages, ${read}.`;
     };
 }
-
 
 
 
