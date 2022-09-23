@@ -1,4 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: aliceblue;
+}
 .card {
     border: 1px solid black;
     white-space: pre;
+    width: 20vw;
+    height: 15vw;
+    text-align: center;
+    padding: 2vh 0;
 }
+.header {
+    display: flex;
+    padding: 0 5vw;
+    border-bottom: 1px solid black;
+}
+#addBook {
+    height: 5vh;
+    align-self: center;
+    margin-left: auto;
+}
+#myForm {
+    text-align: center;
+    padding: 7vh 0px;
+    border-bottom: 1px solid black;
+}
+
+#myForm label[for="title"], label[for="author"], label[for="pages"] {
+    display: inline-block;
+    text-align: right;
+    width: 150px;
+}
+.container {
+    padding: 5vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8vw;
+}
+.dltBtn {
+    margin-right: 1vw;
+}
+button {
+    background-color: #9ee3e3;
+}
+
