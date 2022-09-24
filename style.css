@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: monospace;
 }
 html, body {
     margin: 0px;
@@ -9,9 +10,8 @@ html, body {
 }
 .card {
     border: 1px solid black;
+    background-color: blanchedalmond;
     white-space: pre;
-    width: 20vw;
-    height: 15vw;
     text-align: center;
     padding: 2vh 0;
 }
@@ -38,8 +38,8 @@ html, body {
 }
 .container {
     padding: 5vw;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
     gap: 8vw;
 }
 .dltBtn {
