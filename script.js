@@ -2,6 +2,7 @@ let myLibrary = [];
 
 document.querySelector('#myForm').style.display = 'none';
 
+let inputForm = document.querySelector('#myForm');
 let titleIP, authorIP, pagesIP, readIP,newBook;
 let submitButton = document.querySelector('#submit');
 let container = document.querySelector(".container");
@@ -56,7 +57,33 @@ function getBookInfo() {
     displayBooks();
 }
 
-submitButton.addEventListener('click',getBookInfo);
+inputForm.addEventListener('submit',(e)=> {
+    e.preventDefault();
+    getBookInfo();
+});
+// submitButton.addEventListener('click',()=> {
+//     const titleField = document.querySelector('#myForm #title');
+//     if(!titleField.checkValidity()) {
+//         titleField.setCustomValidity("Please enter the title of the book");
+//     }
+//     else {
+//         titleField.setCustomValidity('');
+//     }
+//     const authorField = document.querySelector('#myForm #author');
+//     if(!authorField.checkValidity()) {
+//         authorField.setCustomValidity("Please enter the author's name");
+//     }
+//     else {
+//         authorField.setCustomValidity('');
+//     }
+//     const pagesField = document.querySelector("#myForm #pages");
+//     if(!pagesField.checkValidity()) {
+//         pagesField.setCustomValidity("Please enter the number of pages");
+//     }
+//     else {
+//         pagesField.setCustomValidity('');
+//     }
+// });
 
 let newBookButton = document.querySelector('#addBook');
 newBookButton.addEventListener('click', () => {
