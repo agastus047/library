@@ -61,30 +61,36 @@ inputForm.addEventListener('submit',(e)=> {
     e.preventDefault();
     getBookInfo();
 });
-// submitButton.addEventListener('click',()=> {
-//     const titleField = document.querySelector('#myForm #title');
-//     if(!titleField.checkValidity()) {
-//         titleField.setCustomValidity("Please enter the title of the book");
-//     }
-//     else {
-//         titleField.setCustomValidity('');
-//     }
-//     const authorField = document.querySelector('#myForm #author');
-//     if(!authorField.checkValidity()) {
-//         authorField.setCustomValidity("Please enter the author's name");
-//     }
-//     else {
-//         authorField.setCustomValidity('');
-//     }
-//     const pagesField = document.querySelector("#myForm #pages");
-//     if(!pagesField.checkValidity()) {
-//         pagesField.setCustomValidity("Please enter the number of pages");
-//     }
-//     else {
-//         pagesField.setCustomValidity('');
-//     }
-// });
-
+const titleField = document.querySelector('#myForm #title');
+titleField.addEventListener("blur",()=>{
+    if(titleField.validity.valueMissing) {
+        titleField.setCustomValidity("Please enter the title");
+    }
+    else {
+        titleField.setCustomValidity('');
+    }
+    titleField.reportValidity();
+});
+const authorField = document.querySelector('#myForm #author');
+authorField.addEventListener('blur',()=> {
+    if(authorField.validity.valueMissing) {
+        authorField.setCustomValidity("Please eneter the name of the author");
+    }
+    else {
+        authorField.setCustomValidity('');
+    }
+    authorField.reportValidity();
+});
+const pagesField = document.querySelector("#myForm #pages");
+pagesField.addEventListener('blur',()=> {
+    if(pagesField.validity.valueMissing) {
+        pagesField.setCustomValidity("Please enter the number of pages");
+    }
+    else {
+        pagesField.setCustomValidity('');
+    }
+    pagesField.reportValidity();
+});
 let newBookButton = document.querySelector('#addBook');
 newBookButton.addEventListener('click', () => {
     document.querySelector('#myForm').style.display = 'block';
